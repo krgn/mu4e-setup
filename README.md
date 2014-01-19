@@ -1,3 +1,3 @@
-# kʁgn emacs configuration #
+# kʁgn mail configuration #
 
-use as you please. unless useless, of course.
+use as you please. unless, of course, displeased.
