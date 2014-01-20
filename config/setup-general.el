@@ -49,7 +49,7 @@
 (setq inhibit-startup-screen t)       ;don't show the startup message
 (setq inhibit-splash-screen t)
 
-(setq browse-url-browser-function (quote browse-url-firefox))
+(setq browse-url-browser-function (quote browse-url-chromium))
 
 (add-hook 'fundamental-mode-hook 'highlight-todo)
 (add-hook 'server-switch-hook 'switch-server-hook)
