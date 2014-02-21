@@ -34,17 +34,17 @@
                                     "Karsten Gebbert\n"
                                     "Null2 GmbH, Berlin\n"
                                     "http://null2.net\n"
-                                    "mob:  0049.176.6199.5110\n")))
-        ("karsten.gebbert"
-         (mu4e-sent-folder "/karsten.gebbert/[Google Mail]/Sent Mail")
-         (mu4e-drafts-folder "/karsten.gebbert/[Google Mail]/Drafts")
-         (mu4e-trash-folder  "/karsten.gebbert/[Google Mail]/Trash")
+                                    "mob:  0049 (0) 176 61995110\n")))
+        ("k"
+         (mu4e-sent-folder "/fm/INBOX/Sent Items")
+         (mu4e-drafts-folder "/fm/INBOX/Drafts")
+         (mu4e-trash-folder  "/fm/INBOX/Trash")
          (user-full-name  "Karsten Gebbert")
-         (user-mail-address "karsten.gebbert@gmail.com")
+         (user-mail-address "k@ioctl.it")
          (message-signature (concat "\n"
                                     "Karsten Gebbert\n"
-                                    "http://krgn.me\n"
-                                    "mob:  0049.176.6199.5110\n")))))
+                                    "http://ioctl.it\n"
+                                    "mob:  0049 (0) 176 61995110\n")))))
 
     (defun choose-msmtp-account ()
       (if (message-mail-p)
@@ -55,7 +55,7 @@
                          (message-fetch-field "from")))
                  (account
                   (cond
-                   ((string-match "karsten.gebbert@gmail.com" from) "karsten.gebbert")
+                   ((string-match "k@ioctl.it" from) "k")
                    ((string-match "karsten@null2.net" from) "null2"))))
               (setq message-sendmail-extra-arguments (list '"-a" account))))))
 
@@ -103,13 +103,13 @@
        "RET" 'mu4e-view-message)
 
      ;; defaults to karsten.gebbert
-     (setq mu4e-sent-folder "/karsten.gebbert/[Google Mail]/Sent Mail"
-           mu4e-drafts-folder "/karsten.gebbert/[Google Mail]/Drafts"
-           mu4e-trash-folder  "/karsten.gebbert/[Google Mail]/Trash"
-           user-mail-address "karsten.gebbert@gmail.com"
+     (setq mu4e-sent-folder "/fm/INBOX/Sent Items"
+           mu4e-drafts-folder "/fm/INBOX/Drafts"
+           mu4e-trash-folder  "/fm/INBOX/Trash"
+           user-mail-address "k@ioctl.it"
            message-signature (concat "\n"
                                      "Karsten Gebbert\n"
-                                     "http://krgn.me\n"
+                                     "http://ioctl.it\n"
                                      "mob:  0049.176.6199.5110\n"))
      (setq gnus-dired-mail-mode 'mu4e-user-agent)
      (setq message-sendmail-envelope-from 'header)
