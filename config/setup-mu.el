@@ -10,9 +10,9 @@
       "Set the account for composing a message."
       (let* ((account
               (if mu4e-compose-parent-message
-                  (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
-                    (string-match "/\\(.*?\\)/" maildir)
-                    (match-string 1 maildir))
+                    (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                      (string-match "/\\(.*?\\)/" maildir)
+                      (match-string 1 maildir))
                 (completing-read (format "Compose with account: (%s) "
                                          (mapconcat #'(lambda (var) (car var)) my-mu4e-account-alist "/"))
                                  (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
@@ -35,7 +35,7 @@
                                     "Null2 GmbH, Berlin\n"
                                     "http://null2.net\n"
                                     "mob:  0049 (0) 176 61995110\n")))
-        ("k"
+        ("fm"
          (mu4e-sent-folder "/fm/INBOX/Sent Items")
          (mu4e-drafts-folder "/fm/INBOX/Drafts")
          (mu4e-trash-folder  "/fm/INBOX/Trash")
@@ -53,9 +53,13 @@
                 ((from (save-restriction
                          (message-narrow-to-headers)
                          (message-fetch-field "from")))
+                 (to (save-restriction
+                         (message-narrow-to-headers)
+                         (message-fetch-field "")))
                  (account
                   (cond
-                   ((string-match "k@ioctl.it" from) "k")
+                   ((string-match "k@ioctl.it" from) "fm")
+                   ((string-match "karsten.gebbert@gmail.com" to) "fm")
                    ((string-match "karsten@null2.net" from) "null2"))))
               (setq message-sendmail-extra-arguments (list '"-a" account))))))
 
