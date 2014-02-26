@@ -53,13 +53,9 @@
                 ((from (save-restriction
                          (message-narrow-to-headers)
                          (message-fetch-field "from")))
-                 (to (save-restriction
-                         (message-narrow-to-headers)
-                         (message-fetch-field "")))
                  (account
                   (cond
                    ((string-match "k@ioctl.it" from) "fm")
-                   ((string-match "karsten.gebbert@gmail.com" to) "fm")
                    ((string-match "karsten@null2.net" from) "null2"))))
               (setq message-sendmail-extra-arguments (list '"-a" account))))))
 
@@ -106,6 +102,10 @@
        "j" 'evil-next-line
        "RET" 'mu4e-view-message)
 
+     (defadvice mu4e-headers-rerun-search (before reindex-before-search)
+       (mu4e-update-index))
+     (ad-activate 'mu4e-headers-rerun-search)
+
      ;; defaults to karsten.gebbert
      (setq mu4e-sent-folder "/fm/INBOX/Sent Items"
            mu4e-drafts-folder "/fm/INBOX/Drafts"
@@ -136,14 +136,11 @@
      (setq user-full-name "Karsten Gebbert")
      (setq mu4e-sent-messages-behavior 'delete)
      (setq mu4e-mu-binary "/usr/bin/mu")
-     (setq mu4e-update-interval 30)
+     (setq mu4e-update-interval nil)
 
      (setq mu4e-maildir-shortcuts
-           '(("/karsten.gebbert/INBOX"               . ?i)
-             ("/null2/INBOX"               . ?k)
-             ("/karsten.gebbert/[Google Mail]/Sent Mail"   . ?s)
-             ("/karsten.gebbert/[Google Mail]/Trash"       . ?t)
-             ("/karsten.gebbert/[Google Mail]/All Mail"    . ?a)))
+           '(("/fm/INBOX"               . ?i)
+             ("/null2/INBOX"               . ?k)))
 
      (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
      (add-hook 'message-send-mail-hook 'choose-msmtp-account)
